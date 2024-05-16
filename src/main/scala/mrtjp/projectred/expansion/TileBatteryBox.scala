@@ -357,13 +357,12 @@ object RenderBatteryBox extends TCubeMapRender with IItemRenderer {
       val t = new Scale(s) `with` new Translation(x, y, z)
 
       TextureUtils.bindAtlas(0)
-      val state = CCRenderState.instance
-      state.reset()
-      state.setDynamic()
-      state.pullLightmap()
-      state.startDrawing()
+      CCRenderState.reset()
+      CCRenderState.setDynamic()
+      CCRenderState.pullLightmap()
+      CCRenderState.startDrawing()
       TCubeMapRender.models(0)(0).render(t, iconT)
-      state.draw()
+      CCRenderState.draw()
     }
   }
 }

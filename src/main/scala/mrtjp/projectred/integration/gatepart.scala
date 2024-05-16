@@ -259,8 +259,7 @@ abstract class GatePart
   @SideOnly(Side.CLIENT)
   override def renderStatic(pos: Vector3, pass: Int) = {
     if (pass == 0 && Configurator.staticGates) {
-      TextureUtils.bindAtlas(0)
-      CCRenderState.instance.setBrightness(world, x, y, z)
+      CCRenderState.setBrightness(world, x, y, z)
       RenderGate.renderStatic(this, pos)
       true
     } else false
@@ -272,10 +271,9 @@ abstract class GatePart
       TextureUtils.bindAtlas(0)
       if (!Configurator.staticGates) {
         GL11.glDisable(GL11.GL_LIGHTING)
-        val state = CCRenderState.instance
-        state.startDrawing()
+        CCRenderState.startDrawing()
         RenderGate.renderStatic(this, pos)
-        state.draw()
+        CCRenderState.draw()
         GL11.glEnable(GL11.GL_LIGHTING)
       }
       RenderGate.renderDynamic(this, pos, frame)

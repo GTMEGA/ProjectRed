@@ -153,10 +153,10 @@ object PrefboardRenderer {
       )
       Minecraft.getMinecraft.getTextureManager.bindTexture(r)
     }
-    val state = CCRenderState.instance
-    state.reset()
-    state.pullLightmap()
-    state.setDynamic()
+
+    CCRenderState.reset()
+    CCRenderState.pullLightmap()
+    CCRenderState.setDynamic()
 
     for (
       (tex, models) <- Seq(
@@ -166,9 +166,9 @@ object PrefboardRenderer {
       )
     ) {
       bind(tex)
-      state.startDrawing()
+      CCRenderState.startDrawing()
       models(if (ortho) 1 else 0).render(t)
-      state.draw()
+      CCRenderState.draw()
     }
   }
 }

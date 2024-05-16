@@ -148,8 +148,7 @@ abstract class SubcorePipePart
   @SideOnly(Side.CLIENT)
   override def renderStatic(pos: Vector3, pass: Int) = {
     if (pass == 0) {
-      TextureUtils.bindAtlas(0)
-      CCRenderState.instance.setBrightness(world, x, y, z)
+      CCRenderState.setBrightness(world, x, y, z)
       doStaticTessellation(pos)
       true
     } else false

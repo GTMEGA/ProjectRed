@@ -85,14 +85,13 @@ object RenderHalo {
     glDisable(GL_LIGHTING)
     glDisable(GL_CULL_FACE)
     glDepthMask(false)
-    val state = CCRenderState.instance
-    state.reset()
-    state.setDynamic()
-    state.startDrawing()
+    CCRenderState.reset()
+    CCRenderState.setDynamic()
+    CCRenderState.startDrawing()
   }
 
   def restoreRenderState() {
-    CCRenderState.instance.draw()
+    CCRenderState.draw()
     glDepthMask(true)
     glColor4d(1, 1, 1, 1)
     glEnable(GL_CULL_FACE)
@@ -103,7 +102,7 @@ object RenderHalo {
   }
 
   private def renderHalo(world: World, cc: LightCache) {
-    CCRenderState.instance.setBrightness(world, cc.pos.x, cc.pos.y, cc.pos.z)
+    CCRenderState.setBrightness(world, cc.pos.x, cc.pos.y, cc.pos.z)
     // Make sure to use camera coordinates for the halo transformation.
     val entity = Minecraft.getMinecraft.renderViewEntity
     renderHalo(
@@ -118,11 +117,10 @@ object RenderHalo {
   }
 
   def renderHalo(cuboid: Cuboid6, colour: Int, t: Transformation) {
-    val state = CCRenderState.instance
-    state.reset()
-    state.setPipeline(t)
-    state.baseColour = Colors(colour).rgba
-    state.alphaOverride = 128
+    CCRenderState.reset()
+    CCRenderState.setPipeline(t)
+    CCRenderState.baseColour(Colors(colour).rgba)
+    CCRenderState.alphaOverride(128)
     BlockRenderer.renderCuboid(cuboid, 0)
   }
 }

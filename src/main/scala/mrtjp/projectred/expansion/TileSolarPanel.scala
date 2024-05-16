@@ -102,8 +102,7 @@ class SolarPanelPart
   @SideOnly(Side.CLIENT)
   override def renderStatic(pos: Vector3, pass: Int) = {
     if (pass == 0) {
-      TextureUtils.bindAtlas(0)
-      CCRenderState.instance.setBrightness(world, x, y, z)
+      CCRenderState.setBrightness(world, x, y, z)
       RenderSolarPanel.render(side, pos)
       true
     } else false
@@ -203,11 +202,10 @@ object RenderSolarPanel extends IItemRenderer {
 
   override def renderItem(t: ItemRenderType, item: ItemStack, data: AnyRef*) {
     TextureUtils.bindAtlas(0)
-    val state = CCRenderState.instance
-    state.reset()
-    state.setDynamic()
-    state.pullLightmap()
-    state.startDrawing()
+    CCRenderState.reset()
+    CCRenderState.setDynamic()
+    CCRenderState.pullLightmap()
+    CCRenderState.startDrawing()
     t match {
       case ItemRenderType.INVENTORY             => render(-0.5, -0.5, -0.5, 1)
       case ItemRenderType.ENTITY                => render(-0.5, -0.5, -0.5, 0.5)
@@ -215,7 +213,7 @@ object RenderSolarPanel extends IItemRenderer {
       case ItemRenderType.EQUIPPED_FIRST_PERSON => render(0, 0.5, 0, 1)
       case _                                    =>
     }
-    state.draw()
+    CCRenderState.draw()
 
     def render(x: Double, y: Double, z: Double, scale: Double) {
       models(0).render(
