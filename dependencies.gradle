@@ -12,10 +12,10 @@ def deobfCurse(curseDep) {
 }
 
 dependencies {
-    api("codechicken:forgemultipart-mc1.7.10:1.5.0-mega:dev")
-    api("mega:forgerelocation-mc1.7.10:0.1.2-mega:dev")
-    implementation("mega:forgerelocationfmp-mc1.7.10:0.1.0-mega:dev")
-    implementation("codechicken:notenoughitems-mc1.7.10:2.2.2-mega:dev")
+    api("codechicken:forgemultipart-mc1.7.10:1.6.0-mega:dev")
+    api("mega:forgerelocation-mc1.7.10:0.2.0-mega:dev")
+    implementation("mega:forgerelocationfmp-mc1.7.10:0.2.0-mega:dev")
+    implementation("codechicken:notenoughitems-mc1.7.10:2.3.0-mega:dev")
     compileOnly("mega:storagedrawers-mc1.7.10:1.14.1-mega:dev") {
         transitive = false
     }
