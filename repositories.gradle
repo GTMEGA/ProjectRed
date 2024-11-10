@@ -2,6 +2,10 @@
 
 repositories {
     maven {
+        name = "mavenpattern"
+        url = "https://mvn.falsepattern.com/releases/"
+    }
+    maven {
         name = "mega"
         url = "https://mvn.falsepattern.com/gtmega_releases/"
     }
